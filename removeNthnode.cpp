@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <iostream>
 using namespace std;
@@ -25,50 +23,50 @@ public:
 Node *ArrayToLL(vector<int> arr)
 {
     Node *head = new Node(arr[0]);
-    Node *temp = head;
+    Node *mover = head;
     for (int i = 1; i < arr.size(); i++)
     {
-        Node *Newnode = new Node(arr[i]);
-        temp->next = Newnode;
-        temp = temp->next;
+        Node *temp = new Node(arr[i]);
+        mover->next = temp;
+        mover = mover->next;
     }
     return head;
 }
 
-void printNthFromEnd(Node *head, int n)
+void *removeNthNode(Node *head, int n)
 {
-    if (head == NULL)
-        return;
-    Node *first = head;
-
-    for (int i = 0; i < n; i++)
+    int size = 0;
+    for (Node *curr = head; curr != NULL; curr = curr->next)
     {
-        first = first->next;
+        size++;
     }
-    Node *second = head;
+    if (size < n)
+    {
+        cout << "oops";
+        }
+    Node *curr = head;
     Node *temp = head;
-    while (first != NULL)
+    for (int i = 1; i < size - n + 1; i++)
     {
-        temp = second;
-        first = first->next;
-        second = second->next;
+        temp = curr;
+        curr = curr->next;
     }
-    cout << second->data;
-    temp->next = second->next;
-    delete (second);
+    temp->next = curr->next->next;
+    delete (curr);
 }
+
 void print(Node *head)
 {
     for (Node *curr = head; curr != NULL; curr = curr->next)
     {
-        cout << curr->data << " ";
+        cout << curr->data << endl;
     }
 }
 
 int main()
 {
-    vector<int> arr = {1, 2, 3, 4, 5};
+    vector<int> arr = {1, 2, 3, 4, 5, 6, 7};
     Node *head = ArrayToLL(arr);
-    printNthFromEnd(head, 3);
+    removeNthNode(head, 1);
     print(head);
 }

@@ -29,7 +29,7 @@ void recurPermute(int index, vector<vector<int>> &ans, vector<int> &nums)
 
 int main()
 {
-    vector<int> v = {1, 2, 3};
+    vector<int> v = {1, 1, 3};
     vector<vector<int>> ans = permute(v);
     for (auto i : ans)
     {

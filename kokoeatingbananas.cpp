@@ -12,7 +12,7 @@ int number_of_hours(vector<int> v, int mid)
     for (auto i : v)
     {
         m =
-            hours = hours + ceil(static_cast<double>(i) / mid);
+            hours = hours + static_cast<int>(static_cast<double>(i) / mid);
     }
     return hours;
 }

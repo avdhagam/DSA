@@ -3,36 +3,33 @@
 using namespace std;
 #include <vector>
 
-void findsubsets(int index, vector<int> &nums, vector<int> &ds, vector<vector<int>> &ans);
-
 vector<vector<int>> subsets(vector<int> &nums)
 {
     vector<vector<int>> ans;
     vector<int> ds;
-    findsubsets(0, nums, ds, ans);
+    findsubsets(0, ans, ds, nums);
     return ans;
 }
 
-void findsubsets(int index, vector<int> &nums, vector<int> &ds, vector<vector<int>> &ans)
+void findsubsets(int index, vector<vector<int>> &ans, vector<int> &ds, vector<int> &nums)
 {
     if (index == nums.size())
     {
         ans.push_back(ds);
         return;
     }
-    if (index == 0)
+    if (index == 0 || nums[index] == nums[index - 1])
     {
-        cout << "{ }" << endl;
+        ds.push_back(nums[index]);
+        findsubsets(index + 1, ans, ds, nums);
+        ds.pop_back();
     }
-    ds.push_back(nums[index]);
-    findsubsets(index + 1, nums, ds, ans);
-    ds.pop_back();
-    findsubsets(index + 1, nums, ds, ans);
+    findsubsets(index + 1, ans, ds, nums);
 }
 
 int main()
 {
-    vector<int> nums = {1, 2, 3};
+    vector<int> nums = {1, 1, 1, 2, 2};
     vector<vector<int>> ans = subsets(nums);
     for (auto i : ans)
     {
