@@ -5,7 +5,7 @@ public:
     {
         if (ind == 0)
             return nums[ind];
-        int pick = INT_MIN;
+        int pick = nums[i];
         if (ind > 1)
         {
             pick = f(ind - 2, nums) + nums[ind];
