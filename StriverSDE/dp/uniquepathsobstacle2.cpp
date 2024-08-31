@@ -5,6 +5,16 @@ public:
     {
         int n = obstacleGrid.size();
         int m = obstacleGrid[0].size();
+
+        if (n == 0 && m == 1)
+            return 0;
+        if (n == 1 && m == 0)
+            return 0;
+        if (n == 0 && m == 0)
+            return 0;
+
+        if (obstacleGrid[0][0] == 1 || obstacleGrid[n - 1][m - 1] == 1)
+            return 0;
         vector<vector<int>> dp(n, vector<int>(m, -1));
         for (int i = 0; i < n; i++)
         {
